@@ -28,6 +28,7 @@ class Payment extends PPModel implements IResource
      */
     private static $credential;
 
+
     /**
      * Set Credential
      *
@@ -39,6 +40,7 @@ class Payment extends PPModel implements IResource
     {
         self::$credential = $credential;
     }
+
 
     /**
      * Set ID
@@ -55,6 +57,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get ID
      * Identifier of the payment resource created
@@ -65,6 +68,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->id;
     }
+
 
     /**
      * Set Create Time
@@ -81,6 +85,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Create Time
      * Time the resource was created
@@ -91,6 +96,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->create_time;
     }
+
 
     /**
      * Set Create Time
@@ -109,6 +115,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Create Time
      * Time the resource was created
@@ -121,6 +128,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->create_time;
     }
+
 
     /**
      * Set Update Time
@@ -137,6 +145,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Update Time
      * Time the resource was last updated
@@ -147,6 +156,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->update_time;
     }
+
 
     /**
      * Set Update Time
@@ -165,6 +175,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Update Time
      * Time the resource was last updated
@@ -177,6 +188,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->update_time;
     }
+
 
     /**
      * Set Intent
@@ -193,6 +205,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Intent
      * Intent of the payment - Sale or Authorization or Order
@@ -203,6 +216,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->intent;
     }
+
 
     /**
      * Set Payer
@@ -219,6 +233,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Payer
      * Source of the funds for this payment represented by a PayPal account or a direct credit card
@@ -229,6 +244,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->payer;
     }
+
 
     /**
      * Set Transactions
@@ -245,6 +261,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Transactions
      * A payment can have more than one transaction, with each transaction establishing a contract between the payer and a payee
@@ -255,6 +272,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->transactions;
     }
+
 
     /**
      * Set State
@@ -271,6 +289,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get State
      * State of the payment
@@ -281,6 +300,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->state;
     }
+
 
     /**
      * Set Redirect URLs
@@ -297,6 +317,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Redirect URLs
      * Redirect urls required only when using payment_method as PayPal - the only settings supported are return and cancel urls
@@ -307,6 +328,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->redirect_urls;
     }
+
 
     /**
      * Set Redirect URLs
@@ -325,6 +347,7 @@ class Payment extends PPModel implements IResource
         return $this;
     }
 
+
     /**
      * Get Redirect URLs
      * Redirect urls required only when using payment_method as PayPal - the only settings supported are return and cancel urls
@@ -337,6 +360,7 @@ class Payment extends PPModel implements IResource
     {
         return $this->redirect_urls;
     }
+
 
     /**
      * Set Links
@@ -351,6 +375,7 @@ class Payment extends PPModel implements IResource
 
         return $this;
     }
+
 
     /**
      * Get Links
@@ -379,16 +404,17 @@ class Payment extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/payment", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/payment", "POST", $payLoad);
         $this->fromJson($json);
 
         return $this;
     }
 
+
     /**
      * Get
      *
-     * @param int                          $paymentId
+     * @param int $paymentId
      * @param \PayPal\Rest\ApiContext|null $apiContext
      *
      * @return Payment
@@ -407,13 +433,14 @@ class Payment extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/payment/$paymentId", "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/payment/$paymentId", "GET", $payLoad);
 
         $ret = new Payment();
         $ret->fromJson($json);
 
         return $ret;
     }
+
 
     /**
      * Execute
@@ -441,7 +468,7 @@ class Payment extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/payment/{$this->getId()}/execute", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/payment/{$this->getId()}/execute", "POST", $payLoad);
 
         $ret = new Payment();
         $ret->fromJson($json);
@@ -449,10 +476,11 @@ class Payment extends PPModel implements IResource
         return $ret;
     }
 
+
     /**
      * All
      *
-     * @param array                        $params
+     * @param array $params
      * @param \PayPal\Rest\ApiContext|null $apiContext
      *
      * @return PaymentHistory
@@ -467,14 +495,14 @@ class Payment extends PPModel implements IResource
         $payLoad = "";
 
         $allowedParams = array(
-            'count'       => 1,
-            'start_id'    => 1,
+            'count' => 1,
+            'start_id' => 1,
             'start_index' => 1,
-            'start_time'  => 1,
-            'end_time'    => 1,
-            'payee_id'    => 1,
-            'sort_by'     => 1,
-            'sort_order'  => 1,
+            'start_time' => 1,
+            'end_time' => 1,
+            'payee_id' => 1,
+            'sort_by' => 1,
+            'sort_order' => 1,
         );
 
         if ($apiContext == null) {
@@ -482,7 +510,7 @@ class Payment extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/payment?" . http_build_query(array_intersect_key($params, $allowedParams)), "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/payment?" . http_build_query(array_intersect_key($params, $allowedParams)), "GET", $payLoad);
 
         $ret = new PaymentHistory();
         $ret->fromJson($json);

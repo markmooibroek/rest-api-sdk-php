@@ -330,7 +330,7 @@ class Sale extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/sale/$saleId", "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/sale/$saleId", "GET", $payLoad);
 
         $ret = new Sale();
         $ret->fromJson($json);
@@ -364,7 +364,7 @@ class Sale extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/sale/{$this->getId()}/refund", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/sale/{$this->getId()}/refund", "POST", $payLoad);
 
         $ret = new Refund();
         $ret->fromJson($json);

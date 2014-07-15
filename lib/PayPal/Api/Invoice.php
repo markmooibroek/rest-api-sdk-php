@@ -739,7 +739,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices", "POST", $payLoad);
 		$this->fromJson($json);
  		return $this;
 	}
@@ -760,7 +760,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/search", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/search", "POST", $payLoad);
 		$ret = new Invoices();
 		$ret->fromJson($json);
 		return $ret;
@@ -781,7 +781,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}/send", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}/send", "POST", $payLoad);
     return true;
 	}
 
@@ -804,7 +804,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}/remind", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}/remind", "POST", $payLoad);
     return true;
 	}
 
@@ -827,7 +827,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}/cancel", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}/cancel", "POST", $payLoad);
     return true;
 	}
 
@@ -850,7 +850,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}/record-payment", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}/record-payment", "POST", $payLoad);
     return true;
 	}
 
@@ -873,7 +873,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}/record-refund", "POST", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}/record-refund", "POST", $payLoad);
     return true;
 	}
 
@@ -893,7 +893,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/$invoiceId", "GET", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/$invoiceId", "GET", $payLoad);
 		$ret = new Invoice();
 		$ret->fromJson($json);
 		return $ret;
@@ -911,7 +911,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/", "GET", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/", "GET", $payLoad);
 		$ret = new Invoices();
 		$ret->fromJson($json);
 		return $ret;
@@ -932,7 +932,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}", "PUT", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}", "PUT", $payLoad);
 		$this->fromJson($json);
  		return $this;
 	}
@@ -952,7 +952,7 @@ class Invoice extends PPModel implements IResource {
 			$apiContext = new ApiContext(self::$credential);
 		}
 		$call = new PPRestCall($apiContext);
-		$json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/invoicing/invoices/{$this->getId()}", "DELETE", $payLoad);
+		$json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/invoicing/invoices/{$this->getId()}", "DELETE", $payLoad);
     return true;
 	}
 }

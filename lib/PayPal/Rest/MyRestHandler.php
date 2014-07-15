@@ -17,7 +17,7 @@ use PayPal\Handler\IPPHandler;
 /**
  * Class RestHandler
  */
-class RestHandler implements IPPHandler
+class MyRestHandler implements IPPHandler
 {
     /**
      * Private Variable

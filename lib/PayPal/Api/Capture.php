@@ -395,7 +395,7 @@ class Capture extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/capture/$captureId", "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/capture/$captureId", "GET", $payLoad);
 
         $ret = new Capture();
         $ret->fromJson($json);
@@ -429,7 +429,7 @@ class Capture extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/capture/{$this->getId()}/refund", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/capture/{$this->getId()}/refund", "POST", $payLoad);
 
         $ret = new Refund();
         $ret->fromJson($json);

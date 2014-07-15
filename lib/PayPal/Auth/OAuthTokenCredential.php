@@ -11,7 +11,7 @@ use PayPal\Core\PPConstants;
 use PayPal\Core\PPHttpConfig;
 use PayPal\Core\PPLoggingManager;
 use PayPal\Exception\PPConfigurationException;
-use PayPal\Rest\RestHandler;
+use PayPal\Rest\MyRestHandler;
 
 /**
  * Class OAuthTokenCredential

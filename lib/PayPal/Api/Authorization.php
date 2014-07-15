@@ -385,7 +385,7 @@ class Authorization extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/authorization/$authorizationId", "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/authorization/$authorizationId", "GET", $payLoad);
 
         $ret = new Authorization();
         $ret->fromJson($json);
@@ -419,7 +419,7 @@ class Authorization extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/authorization/{$this->getId()}/capture", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/authorization/{$this->getId()}/capture", "POST", $payLoad);
 
         $ret = new Capture();
         $ret->fromJson($json);
@@ -448,7 +448,7 @@ class Authorization extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/authorization/{$this->getId()}/void", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/authorization/{$this->getId()}/void", "POST", $payLoad);
 
         $ret = new Authorization();
         $ret->fromJson($json);
@@ -477,7 +477,7 @@ class Authorization extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/authorization/{$this->getId()}/reauthorize", "POST", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/authorization/{$this->getId()}/reauthorize", "POST", $payLoad);
         $this->fromJson($json);
 
         return $this;

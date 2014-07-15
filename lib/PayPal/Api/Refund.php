@@ -388,7 +388,7 @@ class Refund extends PPModel implements IResource
         }
 
         $call = new PPRestCall($apiContext);
-        $json = $call->execute(array('PayPal\Rest\RestHandler'), "/v1/payments/refund/$refundId", "GET", $payLoad);
+        $json = $call->execute(array('PayPal\Rest\MyRestHandler'), "/v1/payments/refund/$refundId", "GET", $payLoad);
 
         $ret = new Refund();
         $ret->fromJson($json);

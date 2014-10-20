@@ -118,7 +118,7 @@ class OAuthTokenCredential
     {
         $base64ClientID = base64_encode($this->clientId . ":" . $this->clientSecret);
         $headers = array(
-            "User-Agent"    => PPUserAgent::getValue(RestHandler::$sdkName, RestHandler::$sdkVersion),
+            "User-Agent"    => PPUserAgent::getValue(MyRestHandler::$sdkName, MyRestHandler::$sdkVersion),
             "Authorization" => "Basic " . $base64ClientID,
             "Accept"        => "*/*"
         );

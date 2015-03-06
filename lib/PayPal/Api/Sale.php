@@ -18,6 +18,7 @@ use PayPal\Transport\PPRestCall;
  * @property string             state
  * @property string             parent_payment
  * @property \PayPal\Api\Links  links
+ * @property \PayPal\Api\TransactionFee     transaction_fee
  */
 class Sale extends PPModel implements IResource
 {
@@ -201,6 +202,25 @@ class Sale extends PPModel implements IResource
     {
         return $this->amount;
     }
+
+
+    /**
+     * @return \PayPal\Api\TransactionFee
+     */
+    public function getTransactionFee(){
+        return $this->transaction_fee;
+    }
+
+    /**
+     * @param $transaction_fee
+     * @return $this
+     */
+    public function setTransactionFee($transaction_fee){
+        $this->transaction_fee = $transaction_fee;
+
+        return $this;
+    }
+
 
     /**
      * Set State
